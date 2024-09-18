@@ -6,6 +6,7 @@ function TextInputFormContainer() {
 
     const[inputType, setinputType] = useState("password");
     const[value, setValue] = useState("");
+    const[hint, setHint] = useState();
 
     const navigate = useNavigate();
 
@@ -13,7 +14,7 @@ function TextInputFormContainer() {
         event.preventDefault();
         console.log("form submitted", value);
         if(value) {
-            navigate(`/play`, { state: {wordSelected: value}});
+            navigate(`/play`, { state: {wordSelected: value, hintGiven: hint}});
         }
     }
     
@@ -32,12 +33,17 @@ function TextInputFormContainer() {
         }
     }
 
+     const handleHintTextInputChange = (event) => {
+        setHint(event.target.value);
+    };
+
   return (
     <TextInputForm
         inputType={inputType}
         handleOnSubmit={handleOnSubmit}
         handleTextInputChange={handleTextInputChange}
         handleShowHideClick={handleShowHideClick}
+        handleHintTextInputChange={handleHintTextInputChange}
     >
     </TextInputForm>
   )
