@@ -4,12 +4,14 @@ import Button from '../components/Button/Button'
 
 function Home() {
     const [word, setWord] = useState('');
+    const [hint, setHint] = useState('');
 
     async function fetchWords() {
         const response = await fetch('http://localhost:3000/words');
         const data = await response.json();
         const randomIdx = Math.floor(Math.random() * data.length);
         setWord(data[randomIdx].wordValue);
+        setHint(data[randomIdx].wordHint);
     }
 
     useEffect(() => {
@@ -18,7 +20,7 @@ function Home() {
 
     return (
         <>
-            <Link to="/play" state={{wordSelected: word}}>
+            <Link to="/play" state={{wordSelected: word, wordHint: hint}}>
                 <Button text="Single Player"></Button>
             </Link>
             <br></br>

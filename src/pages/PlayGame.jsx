@@ -27,8 +27,8 @@ function PlayGame() {
             {state?.wordSelected && (
                 <>
                     <MaskedText text={state.wordSelected} gussedLetters = {gussedLetters}/>
-                    {state.hintGiven && (
-                        <p className="text-gray-400 mt-3 text-sm sm:text-lg italic">Hint: {state.hintGiven}</p>
+                    {state.hintGiven || state.wordHint && (
+                        <p className="text-gray-400 mt-3 text-sm sm:text-lg italic">Hint: {state.hintGiven} {state.wordHint}</p>
                     )}
                     <div>
                         <LetterButtons text={state.wordSelected} gussedLetters = {gussedLetters} onLetterClick={handleLetterClick}></LetterButtons>
