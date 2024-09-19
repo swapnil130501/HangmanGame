@@ -24,16 +24,21 @@ function PlayGame() {
     return (
         <div>
             <h1>Play Game</h1>
-            <MaskedText text={state.wordSelected} gussedLetters = {gussedLetters}/>
-            {state.hintGiven && (
-                <p className="text-gray-400 mt-3 text-sm sm:text-lg italic">Hint: {state.hintGiven}</p>
+            {state?.wordSelected && (
+                <>
+                    <MaskedText text={state.wordSelected} gussedLetters = {gussedLetters}/>
+                    {state.hintGiven && (
+                        <p className="text-gray-400 mt-3 text-sm sm:text-lg italic">Hint: {state.hintGiven}</p>
+                    )}
+                    <div>
+                        <LetterButtons text={state.wordSelected} gussedLetters = {gussedLetters} onLetterClick={handleLetterClick}></LetterButtons>
+                    </div>
+                    <div>
+                        <HangMan step={step}></HangMan>
+                    </div>
+                </>
             )}
-            <div>
-                <LetterButtons text={state.wordSelected} gussedLetters = {gussedLetters} onLetterClick={handleLetterClick}></LetterButtons>
-            </div>
-            <div>
-                <HangMan step={step}></HangMan>
-            </div>
+            
             <Link to="/start" className="text-blue-400">Start Game</Link>
         </div>
     )
